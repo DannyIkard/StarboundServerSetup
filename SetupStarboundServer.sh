@@ -37,6 +37,7 @@ EOF"
 sudo chmod +x /usr/local/bin/starboundserver
 
 #----------- Create systemctl service ------------------------------------
+USER=$(whoami)
 sudo bash -c "cat << EOF > /lib/systemd/system/starboundserver.service
 [Unit]
 Description=Manage Starbound Server
@@ -46,7 +47,7 @@ Type=forking
 ExecStart=/usr/local/bin/starboundserver start
 ExecStop=/usr/local/bin/starboundserver stop
 ExecReload=/usr/local/bin/starboundserver restart
-User=k12
+User=$USER
 
 [Install]
 WantedBy=multi-user.target
